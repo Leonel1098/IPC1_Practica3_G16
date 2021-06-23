@@ -21,7 +21,8 @@ public class Main {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        LeerFolder();
+        Carga nueva = new Carga();
+        //LeerFolder();
         // mostrarAlumno();
         //CargarCursos();
         //mostrarCursos();
@@ -36,8 +37,9 @@ public class Main {
         }
     }
     //Ruta que de la Carpeta a leer
-    static String ruta = "C:\\Users\\Garcia\\IdeaProjects\\IPC1_Practica3_G16\\Archivos Practica3";
-    public static void LeerFolder(){
+    //static String ruta = "C:\\Users\\Garcia\\IdeaProjects\\IPC1_Practica3_G16\\Archivos Practica3";
+
+    public static void LeerFolder(String ruta){
         try{
             DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
             for (Path r : ds){
@@ -45,14 +47,14 @@ public class Main {
                 System.out.println(r.getFileName());
 
                 if (r.getFileName().toString().equals("alumnos.csv")){
-                    CargarAlumnos();
+                    //CargarAlumnos();
                 }
 
                 if (r.getFileName().toString().equals("cursos.csv")) {
-                    CargarCursos();
+                    //CargarCursos();
 
                 }if (r.getFileName().toString().equals("asignaciones.csv")) {
-                    CargarAsignaciones();
+                    //CargarAsignaciones();
                 }
 
             }
@@ -68,7 +70,7 @@ public class Main {
 
         // codigo para abrir archivos
         try{
-            FileReader frC = new FileReader(ruta+"\\cursos.csv");
+            FileReader frC = new FileReader(ruta+"/Cursos.csv");
             BufferedReader bfC = new BufferedReader(frC);
 
             curso = new Cursos[(int) (bfC.lines().count())];
@@ -86,7 +88,7 @@ public class Main {
 
         try {
 
-            FileReader frC = new FileReader(ruta + "\\asignaciones.csv");
+            FileReader frC = new FileReader(ruta + "/Asignaciones.csv");
 
             BufferedReader bfC = new BufferedReader(frC);
             notas = new Asignación[(int) (bfC.lines().count())];
@@ -97,11 +99,12 @@ public class Main {
 
 
     }
+
     public static void llenarArrayAlumnos(String ruta) throws FileNotFoundException {
 
         try {
 
-            FileReader frC = new FileReader(ruta + "\\alumnos.csv");
+            FileReader frC = new FileReader(ruta + "/Alumnos.csv");
 
             BufferedReader bfC = new BufferedReader(frC);
             alumnos = new Alumno[(int) (bfC.lines().count())];
@@ -113,8 +116,7 @@ public class Main {
 
     }
 
-
-    public static void CargarCursos() throws FileNotFoundException {
+    public static void CargarCursos(String ruta) throws FileNotFoundException {
         llenarArrayCursos(ruta);
 
         // ruta en donde stael archivo
@@ -126,7 +128,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\cursos.csv");
+            archivo = new File(ruta+"/Cursos.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -250,7 +252,7 @@ public class Main {
         }
     }
 
-    public static void CargarAsignaciones() throws FileNotFoundException {
+    public static void CargarAsignaciones(String ruta) throws FileNotFoundException {
         llenarArrayAsignacion(ruta);
         // ruta en donde stael archivo
 
@@ -261,7 +263,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\asignaciones.csv");
+            archivo = new File(ruta+"/asignaciones.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -397,7 +399,7 @@ public class Main {
         }
     }
 
-    public static void CargarAlumnos() throws FileNotFoundException {
+    public static void CargarAlumnos(String ruta) throws FileNotFoundException {
         llenarArrayAlumnos(ruta);
 
         // ruta en donde stael archivo
@@ -409,7 +411,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\alumnos.csv");
+            archivo = new File(ruta+"/Alumnos.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -549,6 +551,7 @@ public class Main {
         }
 
     }
+
     public static void mostrarAlumno(){
         System.out.println("Mostrando Todos los Datos Dentro Del Objeto ");
         for (int i = 0; i < contadorAlumnos; i++) {
