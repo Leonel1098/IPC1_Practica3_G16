@@ -14,29 +14,26 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static Cursos[] curso;
     static int contadorCursos;
-    public static Asignación[] notas;
+    public static Notas[] notas;
     static int contadorNotas;
-    public static Alumno [] alumnos;
-    static int contadorAlumnos;
-
 
     public static void main(String[] args) throws FileNotFoundException {
         LeerFolder();
-       // mostrarAlumno();
+
         //CargarCursos();
-        //mostrarCursos();
+        mostrarCursos();
        // CargarNotas();
        //notas();
-       //NotasPorCurso();
+       NotasPorCurso();
     }
-    public static void Asignaciones (){
+    public static void notas (){
         System.out.println("notas");
         for (int i =0 ;i<contadorNotas;i++){
             System.out.println("Alumnos"+notas[i].getIdalumno()+": Curso "+ notas[i].getIdcurso()+" nota "+ notas[i].getNota());
         }
     }
         //Ruta que de la Carpeta a leer
-    static String ruta = "C:\\Users\\Garcia\\IdeaProjects\\IPC1_Practica3_G16\\Archivos Practica3";
+    static String ruta = "C:\\Users\\Usuario\\Documents\\IPC1\\Vacas\\Practica3\\TextFiles";
     public static void LeerFolder(){
         try{
             DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
@@ -44,15 +41,11 @@ public class Main {
 
                 System.out.println(r.getFileName());
 
-                if (r.getFileName().toString().equals("alumnos.csv")){
-                    CargarAlumnos();
-                }
-
-                if (r.getFileName().toString().equals("cursos.csv")) {
+                if (r.getFileName().toString().equals("Cursos.csv")) {
                     CargarCursos();
 
-                }if (r.getFileName().toString().equals("asignaciones.csv")) {
-                    CargarAsignaciones();
+                }if (r.getFileName().toString().equals("Notas.csv")) {
+                    CargarNotas();
                 }
 
             }
@@ -63,12 +56,12 @@ public class Main {
 
     }
 
-    public static void llenarArrayCursos(String ruta) throws FileNotFoundException {
+    public static void llenarArray(String ruta) throws FileNotFoundException {
 
 
         // codigo para abrir archivos
         try{
-            FileReader frC = new FileReader(ruta+"\\cursos.csv");
+            FileReader frC = new FileReader(ruta+"\\Cursos.csv");
             BufferedReader bfC = new BufferedReader(frC);
 
             curso = new Cursos[(int) (bfC.lines().count())];
@@ -82,29 +75,14 @@ public class Main {
 
     }
 
-    public static void llenarArrayAsignacion(String ruta) throws FileNotFoundException {
+    public static void llenarArrayNotas(String ruta) throws FileNotFoundException {
 
         try {
 
-            FileReader frC = new FileReader(ruta + "\\asignaciones.csv");
+            FileReader frC = new FileReader(ruta + "\\Notas.csv");
 
             BufferedReader bfC = new BufferedReader(frC);
-            notas = new Asignación[(int) (bfC.lines().count())];
-
-        } catch (Exception e) {
-
-        }
-
-
-    }
-    public static void llenarArrayAlumnos(String ruta) throws FileNotFoundException {
-
-        try {
-
-            FileReader frC = new FileReader(ruta + "\\alumnos.csv");
-
-            BufferedReader bfC = new BufferedReader(frC);
-            alumnos = new Alumno[(int) (bfC.lines().count())];
+            notas = new Notas[(int) (bfC.lines().count())];
 
         } catch (Exception e) {
 
@@ -115,7 +93,7 @@ public class Main {
 
 
     public static void CargarCursos() throws FileNotFoundException {
-        llenarArrayCursos(ruta);
+        llenarArray(ruta);
 
         // ruta en donde stael archivo
         // codigo para abrir archivos
@@ -126,7 +104,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\cursos.csv");
+            archivo = new File(ruta+"\\Cursos.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -250,8 +228,8 @@ public class Main {
         }
     }
 
-    public static void CargarAsignaciones() throws FileNotFoundException {
-        llenarArrayAsignacion(ruta);
+    public static void CargarNotas() throws FileNotFoundException {
+        llenarArrayNotas(ruta);
         // ruta en donde stael archivo
 
         // codigo para abrir archivos
@@ -261,7 +239,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\asignaciones.csv");
+            archivo = new File(ruta+"\\Notas.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -319,7 +297,7 @@ public class Main {
                         continue;
                     }
 
-                    Asignación nuevo = new Asignación(idalumno, idcurso, nota);
+                    Notas nuevo = new Notas(idalumno, idcurso, nota);
                     //agregamos este objeto a nuestro arreglo
                     notas[contadorNotas] = nuevo;
                     contadorNotas++;
@@ -395,167 +373,5 @@ public class Main {
 
 
     }
-    }
-
-    public static void CargarAlumnos() throws FileNotFoundException {
-        llenarArrayAlumnos(ruta);
-
-        // ruta en donde stael archivo
-        // codigo para abrir archivos
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-
-
-        try {
-            // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"\\alumnos.csv");
-
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-
-            // LEYENDO EL ARCHIVO
-            String linea = br.readLine();
-
-            int contLineas = 1;
-            while ((linea = br.readLine()) != null) {
-
-                // Aqui estamos leyendo fila por fila, entonces vamos a
-                //almacenar esa informacion en nuestro arreglo de Alumnos
-
-                // Separando los datos por una coma
-                String[] Datos = linea.split(",");
-                Datos[0] = Datos[0].trim();
-                Datos[1] = Datos[1].trim();
-                Datos[2] = Datos[2].trim();
-                Datos[3] = Datos [3].trim();
-                Datos[4] = Datos [4].trim();
-
-
-                if (Datos[0].matches(".[/!#$%&/()=¿) ].*")) {
-
-                    contLineas++;
-                    continue;
-                }
-                if (Datos[1].matches(".[/!#$%&/()=¿)].*")) {
-
-                    contLineas++;
-                    continue;
-                }
-                if (Datos[2].matches(".[/123456789!#$%&/()=¿)].*")) {
-
-                    contLineas++;
-                    continue;
-                }
-                if (Datos[3].matches(".[!#$%&()=¿)].*")) {
-
-                    contLineas++;
-                    continue;
-                }
-                if (Datos[4].matches(".[/!#$%&/()=¿)].*")) {
-                    contLineas++;
-                    continue;
-                }
-
-
-                try {
-                    contLineas++;
-                    int id = Integer.parseInt(Datos[0]);
-                    int carnet = Integer.parseInt(Datos[1]);
-                    String nombre = Datos[2];
-                    String fechanacimiento = Datos[3];
-                    String Genero = Datos[4];
-
-                    boolean idRepetido = false;
-                    for (int i = 0; i < contadorAlumnos; i++) {
-                        if (id == alumnos[i].getId()) {
-                            idRepetido = true;
-                        }
-                    }
-                    if (idRepetido) {
-
-                        contLineas++;
-                        continue;
-                    }
-
-                    boolean carnetRepetido = false;
-                    for (int i = 0; i < contadorAlumnos; i++) {
-                        if (carnet == alumnos[i].getCarnet()) {
-                            carnetRepetido = true;
-                        }
-                    }
-                    if (carnetRepetido) {
-
-                        contLineas++;
-                        continue;
-                    }
-
-                    if (nombre.equals(" ")) {
-
-                        contLineas++;
-                        continue;
-                    }
-                    if (nombre.equals("")) {
-
-                        contLineas++;
-                        continue;
-                    }
-
-                    if (!Genero.equals("M")) {
-                        if (!Genero.equals("F")) {
-                            contLineas++;
-                            continue;
-                        }
-                    }
-                    if (Genero.equals(" ")) {
-                        contLineas++;
-                        continue;
-                    }
-                    if (Genero.equals("")) {
-                        contLineas++;
-                        continue;
-                    }
-
-                    //Con nuestros datos, Alumno crear un objeto de tipo Alumno
-                    Alumno nuevo = new Alumno(id, carnet, nombre, fechanacimiento, Genero);
-                    //agregamos este objeto a nuestro arreglo
-                    alumnos[contadorAlumnos] = nuevo;
-                    contadorAlumnos++;
-                } catch (Exception e) {
-                    String error = e.getMessage();
-                    String erro2 = e.getLocalizedMessage();
-
-                    String DErr[] = error.split(":");
-                    if (DErr[0].equals("For input string")) {
-
-                    }
-                }
-
-
-            }
-        } catch (Exception e) {
-
-
-        } finally {
-            try {
-                if (null != fr) {
-                    fr.close();
-                }
-            } catch (Exception e2) {
-                System.out.println(e2);
-                System.out.println("ERROR EN LA CARGA DEL ARCHIVO");
-            }
-
-        }
-
-    }
-    public static void mostrarAlumno(){
-       System.out.println("Mostrando Todos los Datos Dentro Del Objeto ");
-            for (int i = 0; i < contadorAlumnos; i++) {
-                System.out.println("ID : " + alumnos[i].getId() + " Carnet :" + alumnos[i].getCarnet() + " Nombre :"
-                        + alumnos[i].getNombre() + " Fecha de Nacimiento :" + alumnos[i].getFechanacimiento() + " Genéro :" + alumnos[i].getGenero());
-            }
-
-
     }
 }
