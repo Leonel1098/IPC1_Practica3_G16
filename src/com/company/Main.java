@@ -18,7 +18,7 @@ public class Main {
     static int contadorNotas;
     public static Alumno [] alumnos;
     static int contadorAlumnos;
-
+//CArgas
 
     public static void main(String[] args) throws FileNotFoundException {
         LeerFolder();
