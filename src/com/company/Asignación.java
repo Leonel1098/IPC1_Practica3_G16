@@ -1,11 +1,11 @@
 package com.company;
 
-public class Notas {
+public class Asignación {
     private int Idalumno;
     private int Idcurso;
     private double nota;
 
-    public Notas(int idalumno, int idcurso, double nota){
+    public Asignación(int idalumno, int idcurso, double nota){
         this.Idalumno = idalumno;
         this.Idcurso = idcurso;
         this.nota = nota;
