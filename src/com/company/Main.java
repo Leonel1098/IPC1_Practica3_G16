@@ -34,13 +34,14 @@ public class Main {
     }
         //Ruta que de la Carpeta a leer
     static String ruta = "C:\\Users\\Usuario\\Documents\\IPC1\\Vacas\\Practica3\\TextFiles";
+    //Leer todos los Archivos de un Folder
     public static void LeerFolder(){
         try{
             DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
             for (Path r : ds){
 
                 System.out.println(r.getFileName());
-
+                //Condicionales para leer los Archivos 
                 if (r.getFileName().toString().equals("Cursos.csv")) {
                     CargarCursos();
 
