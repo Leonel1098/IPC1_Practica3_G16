@@ -1,5 +1,12 @@
 package com.company;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+
+import javax.swing.*;
 import java.io.*;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -7,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Scanner;
+
 
 public class Main {
     public static Scanner sc = new Scanner(System.in);
@@ -19,7 +27,7 @@ public class Main {
 
 
     public static void main(String[] args) throws FileNotFoundException {
-        Carga nueva = new Carga();
+        Carga c = new Carga();
         //LeerFolder();
         // mostrarAlumno();
         //CargarCursos();
@@ -40,32 +48,31 @@ public class Main {
 
     public static void LeerFolder(String ruta) throws IOException {
 
-            DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
-            for (Path r : ds) {
+        DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
+        for (Path r : ds) {
 
-                System.out.println(r.getFileName());
+            System.out.println(r.getFileName());
 
-                //Condicionales para leer los Archivos
-                if (r.getFileName().toString().equals("Cursos.csv")) {
-                    CargarCursos(ruta);
+            //Condicionales para leer los Archivos
+            if (r.getFileName().toString().equals("Cursos.csv")) {
+                CargarCursos(ruta);
 
-                    if (r.getFileName().toString().equals("alumnos.csv")) {
-                        //CargarAlumnos();
-                    }
+                if (r.getFileName().toString().equals("alumnos.csv")) {
+                    //CargarAlumnos();
+                }
 
-                    if (r.getFileName().toString().equals("cursos.csv")) {
-                        //CargarCursos();
-
-                    }
-                    if (r.getFileName().toString().equals("asignaciones.csv")) {
-                        //CargarAsignaciones();
-                    }
+                if (r.getFileName().toString().equals("cursos.csv")) {
+                    //CargarCursos();
 
                 }
-            }
+                if (r.getFileName().toString().equals("asignaciones.csv")) {
+                    //CargarAsignaciones();
+                }
 
+            }
         }
 
+    }
 
 
     public static void llenarArrayCursos(String ruta) throws FileNotFoundException {
@@ -561,80 +568,79 @@ public class Main {
 
 
     }
-    public static void MostrarAlumnosDeUnCurso(){
+
+    public static void MostrarAlumnosDeUnCurso() {
         System.out.println("Escrba el nombre del idDelCurso");
-        int idCurso=sc.nextInt();
-        for (int i=0; i<contadorCursos;i++){
-            if (idCurso==curso[i].getId()){
+        int idCurso = sc.nextInt();
+        for (int i = 0; i < contadorCursos; i++) {
+            if (idCurso == curso[i].getId()) {
                 System.out.println(curso[i].getNombre());
             }
         }
-        for (int i=0;i<contadorNotas;i++){
-            if (idCurso==notas[i].getIdcurso()){
-                System.out.println("Nombre :"+BuscarAlumnoPorId(notas[i].getIdalumno())+" nota  :"+
+        for (int i = 0; i < contadorNotas; i++) {
+            if (idCurso == notas[i].getIdcurso()) {
+                System.out.println("Nombre :" + BuscarAlumnoPorId(notas[i].getIdalumno()) + " nota  :" +
                         notas[i].getNota());
 
             }
         }
     }
-    public static String BuscarAlumnoPorId(int idAlumno){
-        for (int i=0;i<contadorAlumnos;i++){
-            if (idAlumno==alumnos[i].getId()){
+
+    public static String BuscarAlumnoPorId(int idAlumno) {
+        for (int i = 0; i < contadorAlumnos; i++) {
+            if (idAlumno == alumnos[i].getId()) {
                 return alumnos[i].getNombre();
             }
         }
         return "No Existe";
     }
-    public static  void GraficaSexo(){
-        System.out.println("Escrba el nombre del idDelCurso");
-        int idCurso=sc.nextInt();
-        for (int i=0; i<contadorCursos;i++){
-            if (idCurso==curso[i].getId()){
+
+
+    public static void Genero(int idCurso)   {
+        int m = 0;
+        int f = 0;
+
+        for (int i = 0; i <= contadorCursos; i++) {
+            if (idCurso == (int)curso[i].getId()) {
                 System.out.println(curso[i].getNombre());
+                    break;
+            }if (i==contadorCursos){
+
+                JOptionPane.showMessageDialog(null,"Curso No Econtrado");
+                return;
             }
         }
-        for (int i=0;i<contadorAlumnos;i++){
-            if (idCurso==notas[i].getIdcurso()){
-                System.out.println("Nombre :"+BuscarAlumnoPorId(notas[i].getIdalumno())+" nota  :"+
+
+        for (int i = 0; i < contadorNotas; i++) {
+            if (idCurso == notas[i].getIdcurso()) {
+                System.out.println("Nombre :" + BuscarAlumnoPorId(notas[i].getIdalumno()) + " nota  :" +
                         notas[i].getNota());
-                System.out.println("Sexo " +BuscaSexoDelAlumno(notas[i].getIdalumno()));
+                System.out.println("Sexo " + BuscaSexoDelAlumno(notas[i].getIdalumno()));
+                if (BuscaSexoDelAlumno(notas[i].getIdalumno()).equals("M")) {
+                    m++;
+                }
+                if (BuscaSexoDelAlumno(notas[i].getIdalumno()).equals("F")) {
+                    f++;
+                }
+
+
+
             }
+
         }
 
-    }
-    public static String BuscaSexoDelAlumno(int idAlumno){
 
-            for (int i=0;i<contadorAlumnos;i++){
-                if (idAlumno==alumnos[i].getId()){
-                    return alumnos[i].getGenero();
-                }
+    }
+
+    public static String BuscaSexoDelAlumno(int idAlumno) {
+
+        for (int i = 0; i < contadorAlumnos; i++) {
+            if (idAlumno == alumnos[i].getId()) {
+                return alumnos[i].getGenero();
             }
-            return "%";
+        }
+        return "%";
 
     }
-    /*
-    a.setValue("Femenino  ", f);
 
-        // Creando el Grafico
-        chart = ChartFactory.createPieChart(
-                "Género de Alumnos ",
-                data,
-                true,
-                false,
-                true);
-        //Meter La grafica en un Panel
-        cp = new ChartPanel(chart);
-        cp.setLayout(new java.awt.BorderLayout(6500, 6500));
-        cp.setBounds(850, 180, 600, 500);
-        cp.setVisible(true);
-        cp.validate();
-        this.add(cp);
-
-        // Mostrar Grafico
-        // ChartFrame frame = new ChartFrame("JFreeChart", chart);
-       /* frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-     */
 }

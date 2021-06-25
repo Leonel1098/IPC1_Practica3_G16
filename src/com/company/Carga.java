@@ -67,8 +67,8 @@ public class Carga extends JFrame implements ActionListener {
                 w.printStackTrace();
 
             }
-                Main.GraficaSexo();
 
+                GraficaGenero gg=new GraficaGenero();
 
 
 
