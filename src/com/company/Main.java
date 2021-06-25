@@ -1,13 +1,11 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.Scanner;
 
 public class Main {
@@ -16,7 +14,7 @@ public class Main {
     static int contadorCursos;
     public static Asignación[] notas;
     static int contadorNotas;
-    public static Alumno [] alumnos;
+    public static Alumno[] alumnos;
     static int contadorAlumnos;
 
 
@@ -30,56 +28,59 @@ public class Main {
         //notas();
         //NotasPorCurso();
     }
-    public static void Asignaciones (){
+
+    public static void Asignaciones() {
         System.out.println("notas");
-        for (int i =0 ;i<contadorNotas;i++){
-            System.out.println("Alumnos"+notas[i].getIdalumno()+": Curso "+ notas[i].getIdcurso()+" nota "+ notas[i].getNota());
+        for (int i = 0; i < contadorNotas; i++) {
+            System.out.println("Alumnos" + notas[i].getIdalumno() + ": Curso " + notas[i].getIdcurso() + " nota " + notas[i].getNota());
         }
     }
     //Ruta que de la Carpeta a leer
     //static String ruta = "C:\\Users\\Garcia\\IdeaProjects\\IPC1_Practica3_G16\\Archivos Practica3";
 
-    public static void LeerFolder(String ruta){
-        try{
+    public static void LeerFolder(String ruta) throws IOException {
+
             DirectoryStream<Path> ds = Files.newDirectoryStream(Paths.get(ruta));
-            for (Path r : ds){
+            for (Path r : ds) {
 
                 System.out.println(r.getFileName());
 
-                if (r.getFileName().toString().equals("alumnos.csv")){
-                    //CargarAlumnos();
+                //Condicionales para leer los Archivos
+                if (r.getFileName().toString().equals("Cursos.csv")) {
+                    CargarCursos(ruta);
+
+                    if (r.getFileName().toString().equals("alumnos.csv")) {
+                        //CargarAlumnos();
+                    }
+
+                    if (r.getFileName().toString().equals("cursos.csv")) {
+                        //CargarCursos();
+
+                    }
+                    if (r.getFileName().toString().equals("asignaciones.csv")) {
+                        //CargarAsignaciones();
+                    }
+
                 }
-
-                if (r.getFileName().toString().equals("cursos.csv")) {
-                    //CargarCursos();
-
-                }if (r.getFileName().toString().equals("asignaciones.csv")) {
-                    //CargarAsignaciones();
-                }
-
             }
-        }catch (Exception e){
-
 
         }
 
-    }
+
 
     public static void llenarArrayCursos(String ruta) throws FileNotFoundException {
 
 
         // codigo para abrir archivos
-        try{
-            FileReader frC = new FileReader(ruta+"/Cursos.csv");
+        try {
+            FileReader frC = new FileReader(ruta + "/Cursos.csv");
             BufferedReader bfC = new BufferedReader(frC);
 
             curso = new Cursos[(int) (bfC.lines().count())];
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
-
-
 
 
     }
@@ -128,7 +129,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"/Cursos.csv");
+            archivo = new File(ruta + "/Cursos.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -263,7 +264,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"/asignaciones.csv");
+            archivo = new File(ruta + "/asignaciones.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -315,9 +316,10 @@ public class Main {
                     boolean idRepetido = false;
                     for (int i = 0; i < contadorNotas; i++) {
                         if ((idalumno == notas[i].getIdalumno()) && (idcurso == notas[i].getIdcurso())) {
-                            idRepetido=true;
+                            idRepetido = true;
                         }
-                    }if (idRepetido){
+                    }
+                    if (idRepetido) {
                         continue;
                     }
 
@@ -363,15 +365,14 @@ public class Main {
             if (idCurso == curso[i].getId()) ;
 
 
-
             return curso[i].getNombre();
         }
         return "";
     }
 
-    public static void MostrarNotasdelCurso(int idCurso,int idCursEnNotas) {
-        for (int i =0 ; i<contadorNotas;i++){
-            if (idCurso==idCursEnNotas){
+    public static void MostrarNotasdelCurso(int idCurso, int idCursEnNotas) {
+        for (int i = 0; i < contadorNotas; i++) {
+            if (idCurso == idCursEnNotas) {
                 System.out.println("Nota " + notas[i].getNota());
 
             }
@@ -386,14 +387,13 @@ public class Main {
         for (int i = 0; i < contadorCursos; i++) {
 
             System.out.println("Nombre Curso " + curso[i].getNombre());
-            for (int j=0;j<contadorNotas;j++){
+            for (int j = 0; j < contadorNotas; j++) {
 
-                if (curso[i].getId()==notas[j].getIdcurso()){
+                if (curso[i].getId() == notas[j].getIdcurso()) {
                     System.out.println("id Alumno  " + notas[j].getIdalumno());
-                    System.out.println("Nota "+ notas[j].getNota());
+                    System.out.println("Nota " + notas[j].getNota());
                 }
             }
-
 
 
         }
@@ -411,7 +411,7 @@ public class Main {
 
         try {
             // OBJETOS PARA ABRIR LOS ARCHIVOS
-            archivo = new File(ruta+"/Alumnos.csv");
+            archivo = new File(ruta + "/Alumnos.csv");
 
             fr = new FileReader(archivo);
             br = new BufferedReader(fr);
@@ -430,8 +430,8 @@ public class Main {
                 Datos[0] = Datos[0].trim();
                 Datos[1] = Datos[1].trim();
                 Datos[2] = Datos[2].trim();
-                Datos[3] = Datos [3].trim();
-                Datos[4] = Datos [4].trim();
+                Datos[3] = Datos[3].trim();
+                Datos[4] = Datos[4].trim();
 
 
                 if (Datos[0].matches(".[/!#$%&/()=¿) ].*")) {
@@ -552,7 +552,7 @@ public class Main {
 
     }
 
-    public static void mostrarAlumno(){
+    public static void mostrarAlumno() {
         System.out.println("Mostrando Todos los Datos Dentro Del Objeto ");
         for (int i = 0; i < contadorAlumnos; i++) {
             System.out.println("ID : " + alumnos[i].getId() + " Carnet :" + alumnos[i].getCarnet() + " Nombre :"
@@ -561,4 +561,80 @@ public class Main {
 
 
     }
+    public static void MostrarAlumnosDeUnCurso(){
+        System.out.println("Escrba el nombre del idDelCurso");
+        int idCurso=sc.nextInt();
+        for (int i=0; i<contadorCursos;i++){
+            if (idCurso==curso[i].getId()){
+                System.out.println(curso[i].getNombre());
+            }
+        }
+        for (int i=0;i<contadorNotas;i++){
+            if (idCurso==notas[i].getIdcurso()){
+                System.out.println("Nombre :"+BuscarAlumnoPorId(notas[i].getIdalumno())+" nota  :"+
+                        notas[i].getNota());
+
+            }
+        }
+    }
+    public static String BuscarAlumnoPorId(int idAlumno){
+        for (int i=0;i<contadorAlumnos;i++){
+            if (idAlumno==alumnos[i].getId()){
+                return alumnos[i].getNombre();
+            }
+        }
+        return "No Existe";
+    }
+    public static  void GraficaSexo(){
+        System.out.println("Escrba el nombre del idDelCurso");
+        int idCurso=sc.nextInt();
+        for (int i=0; i<contadorCursos;i++){
+            if (idCurso==curso[i].getId()){
+                System.out.println(curso[i].getNombre());
+            }
+        }
+        for (int i=0;i<contadorAlumnos;i++){
+            if (idCurso==notas[i].getIdcurso()){
+                System.out.println("Nombre :"+BuscarAlumnoPorId(notas[i].getIdalumno())+" nota  :"+
+                        notas[i].getNota());
+                System.out.println("Sexo " +BuscaSexoDelAlumno(notas[i].getIdalumno()));
+            }
+        }
+
+    }
+    public static String BuscaSexoDelAlumno(int idAlumno){
+
+            for (int i=0;i<contadorAlumnos;i++){
+                if (idAlumno==alumnos[i].getId()){
+                    return alumnos[i].getGenero();
+                }
+            }
+            return "%";
+
+    }
+    /*
+    a.setValue("Femenino  ", f);
+
+        // Creando el Grafico
+        chart = ChartFactory.createPieChart(
+                "Género de Alumnos ",
+                data,
+                true,
+                false,
+                true);
+        //Meter La grafica en un Panel
+        cp = new ChartPanel(chart);
+        cp.setLayout(new java.awt.BorderLayout(6500, 6500));
+        cp.setBounds(850, 180, 600, 500);
+        cp.setVisible(true);
+        cp.validate();
+        this.add(cp);
+
+        // Mostrar Grafico
+        // ChartFrame frame = new ChartFrame("JFreeChart", chart);
+       /* frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+     */
 }

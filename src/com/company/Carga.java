@@ -43,21 +43,35 @@ public class Carga extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == btncarga){
             String ruta = txtcarga.getText();
+
             try {
+                System.out.println("-----------------Cursos-----------");
                 Main.CargarCursos(ruta);
+                Main.mostrarCursos();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
             try {
+                System.out.println("-------Alumnos--------");
                 Main.CargarAlumnos(ruta);
+                Main.mostrarAlumno();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+            try{
+                System.out.println("Asignaciones");
+                Main.CargarAsignaciones(ruta);
+                Main.NotasPorCurso();
+            }catch (Exception w){
+                w.printStackTrace();
+
+            }
+                Main.GraficaSexo();
 
 
-            Main.mostrarCursos();
-            Main.mostrarAlumno();
+
+
 
         }
     }
