@@ -647,5 +647,23 @@ public class Main {
 
         return 0;
     }
+    public static String curso(int id)
+    {
+        for (Cursos p: cursosh )
+            if (id==p.getId())
+                return p.getNombre();
+
+        return null;
+
+    }
+    public static String nombre(int id)
+    {
+        for (Alumno p: alumnos )
+            if (id==p.getId())
+                return p.getNombre();
+
+
+        return null;
+    }
 
 }
