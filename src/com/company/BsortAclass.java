@@ -87,8 +87,10 @@ Asignación temp;
                         Datos Dt = new Datos("BubbleSort", "Rapida", Pa, "Ascendente");
                         Dt.setVisible(true);
                     }
-                    this.stop();
+
                     Crono.ejecutar = false;
+                    this.stop();
+                    ;
 
                 }
                // sleep(1000);

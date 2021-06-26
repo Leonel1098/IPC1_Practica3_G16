@@ -67,6 +67,7 @@ public class BsortDclass extends Thread{
                         Datos Dt = new Datos("BubbleSort", "Rapida", Pa, "Descendente");
                         Dt.setVisible(true);
                     }
+                    Crono.ejecutar = false;
                     this.stop();
 
 

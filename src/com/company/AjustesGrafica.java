@@ -104,17 +104,20 @@ public class AjustesGrafica extends JFrame implements ActionListener {
                 if (Vel.equals("Lenta")){
                     BsortAclass BAA = new BsortAclass(Main.notas, IdC, 1500);
                     Crono C = new Crono();
+                    Crono.ejecutar = true;
                     C.start();
                     BAA.start();
                 }else if (Vel.equals("Media")){
                     BsortAclass BAA = new BsortAclass(Main.notas, IdC, 800);
                     Crono C = new Crono();
                     C.start();
+                    Crono.ejecutar = true;
                     BAA.start();
                 }else if(Vel.equals("Rápida")){
                     BsortAclass BAA = new BsortAclass(Main.notas, IdC, 300);
                     BAA.start();
                     Crono C = new Crono();
+                    Crono.ejecutar = true;
                     C.start();
                 }
 
@@ -125,30 +128,42 @@ public class AjustesGrafica extends JFrame implements ActionListener {
                     BsortDclass BDA = new BsortDclass(Main.notas, IdC, 1500);
                     BDA.start();
                     Crono C = new Crono();
+                    Crono.ejecutar = true;
                     C.start();
                 }else if (Vel.equals("Media")){
                     BsortDclass BDA = new BsortDclass(Main.notas, IdC, 800);
                     BDA.start();
                     Crono C = new Crono();
+                    Crono.ejecutar = true;
                     C.start();
                 }else if(Vel.equals("Rápida")){
                     BsortDclass BDA = new BsortDclass(Main.notas, IdC, 300);
                     BDA.start();
                     Crono C = new Crono();
+                    Crono.ejecutar = true;
                     C.start();
                 }
             }
 
             else  if (Metodo.getSelectedItem().equals("QuickSort Ascendente")){
                 if (Vel.equals("Lenta")){
-                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.notas.length/2, IdC, 1500);
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, 11-1, IdC, 1500);
                     Q.start();
+                    Crono C = new Crono();
+                    Crono.ejecutar = true;
+                    C.start();
                 }else if (Vel.equals("Media")){
-                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.contadorNotas, IdC, 800);
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.contadorNotas-1, IdC, 800);
                     Q.start();
+                    Crono C = new Crono();
+                    Crono.ejecutar = true;
+                    C.start();
                 }else if(Vel.equals("Rápida")){
-                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.contadorNotas, IdC, 300);
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.notas.length-1, IdC, 300);
                     Q.start();
+                    Crono C = new Crono();
+                    Crono.ejecutar = true;
+                    C.start();
                 }
             }
 

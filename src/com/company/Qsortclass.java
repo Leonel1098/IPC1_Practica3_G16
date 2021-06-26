@@ -4,7 +4,7 @@ public class Qsortclass extends Thread{
     public  Asignación[] p;
     public int L,H;
     public static grafica h = new grafica();
-   public static Qsortclass u,k;
+   //public static Qsortclass u,k;
    public int IdCurso, Velocidad;
     public Qsortclass(Asignación[] p,int L, int  H, int IdCurso, int Velocidad)
     {
@@ -50,8 +50,12 @@ public class Qsortclass extends Thread{
                 pivote = L;
                 while (L!=H)
                 {
-                    while (p[H].getNota()>=p[L].getNota()  && L<H) H--;
-                    while (p[L].getNota()<p[pivote].getNota() && L<H) L++;
+                    if (p[H] != null && p[L] != null) {
+                        while (p[H].getNota() >= p[L].getNota() && L < H) H--;
+                    }
+                    if (p[L] != null && p[pivote] != null) {
+                        while (p[L].getNota() < p[pivote].getNota() && L < H) L++;
+                    }
                     if (H!=L)
                     {
                         temp = p[H];
@@ -61,9 +65,9 @@ public class Qsortclass extends Thread{
                     if (L==H)
                     {
 
-                         u = new Qsortclass(p, i, L - 1, IdCurso, Velocidad);
+                         Qsortclass u = new Qsortclass(p, i, L - 1, IdCurso, Velocidad);
                          p= u.p;
-                         k=new Qsortclass(p,L+1,d, IdCurso, Velocidad);
+                         Qsortclass k=new Qsortclass(p,L+1,d, IdCurso, Velocidad);
                          p=k.p;
                     }
                 }
@@ -105,6 +109,8 @@ public class Qsortclass extends Thread{
                 }
 
             }
+            Crono.ejecutar = false;
+            //this.stop();
         }
 
 
