@@ -6,13 +6,13 @@ import java.awt.*;
 import java.rmi.Remote;
 
 public class BsortAclass extends Thread{
-public  Asignaciones[] p;
+public  Asignación[] p;
     public static grafica g = new grafica();
-public BsortAclass(Asignaciones[] p)
+public BsortAclass(Asignación[] p)
 {
     this.p=p;
 }
-Asignaciones temp;
+Asignación temp;
 
 
     @Override
@@ -26,7 +26,7 @@ Asignaciones temp;
 
                 t = false;
                 for (int i = 1; i < p.length; i++) {
-                    if (p[i].getNotaAlumno() < p[i - 1].getNotaAlumno()) {
+                    if (p[i].getNota() < p[i - 1].getNota()) {
                         temp = p[i];
                         System.out.println("ENtra");
                         p[i] = p[i - 1];
@@ -63,11 +63,11 @@ Asignaciones temp;
 
         }
         catch (InterruptedException e){
-            for (Asignaciones j : p) {
+            for (Asignación j : p) {
 
-                if ("Machamachacas".equals(Main.curso(j.getIDCurso()))) {
+                if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
 
-                    g.datos.setValue(j.getNotaAlumno(), Main.nombre(j.getIDAlumno()), Main.curso(j.getIDCurso()));
+                    g.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
 
                     g.pack();
                     g.repaint();

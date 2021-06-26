@@ -1,13 +1,13 @@
 package com.company;
 
 public class BsortDclass extends Thread{
-    public  Asignaciones[] p;
+    public  Asignación[] p;
     public static grafica h = new grafica();
-    public BsortDclass(Asignaciones[] p)
+    public BsortDclass(Asignación[] p)
     {
         this.p=p;
     }
-    Asignaciones temp;
+    Asignación temp;
 
 
     @Override
@@ -20,7 +20,7 @@ public class BsortDclass extends Thread{
                 t = false;
                 for (int i = 1; i<p.length;i++)
                 {
-                    if (p[i].getNotaAlumno()>p[i-1].getNotaAlumno()){
+                    if (p[i].getNota()>p[i-1].getNota()){
                         temp = p[i];
                         p[i]=p[i-1];
                         p[i-1]=temp;
@@ -29,11 +29,11 @@ public class BsortDclass extends Thread{
                     }
                 }
                 if (t==false) {
-                    for (Asignaciones j : p) {
+                    for (Asignación j : p) {
 
-                        if ("Machamachacas".equals(Main.curso(j.getIDCurso()))) {
+                        if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
 
-                            h.datos.setValue(j.getNotaAlumno(), Main.nombre(j.getIDAlumno()), Main.curso(j.getIDCurso()));
+                            h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
                             h.pack();
                             h.repaint();
                             // g.datos.clear();

@@ -1,28 +1,28 @@
 package com.company;
 
 public class Qsortclass extends Thread{
-    public  Asignaciones[] p;
+    public  Asignación[] p;
     public int L,H;
     public static grafica h = new grafica();
    public static Qsortclass u,k;
-    public Qsortclass(Asignaciones[] p,int L, int  H)
+    public Qsortclass(Asignación[] p,int L, int  H)
     {
         this.p=p;
         this.L=L;
         this.H=H;
     }
-    Asignaciones temp;
+    Asignación temp;
 
 
     @Override
     public void run() {
         try {
             h.setVisible(true);
-           if (L>=H) { for (Asignaciones j : p) {
+           if (L>=H) { for (Asignación j : p) {
 
-               if ("Machamachacas".equals(Main.curso(j.getIDCurso()))) {
+               if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
 
-                   h.datos.setValue(j.getNotaAlumno(), Main.nombre(j.getIDAlumno()), Main.curso(j.getIDCurso()));
+                   h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
                    h.pack();
                    h.repaint();
 
@@ -32,7 +32,7 @@ public class Qsortclass extends Thread{
                }
 
            }
-               for (Asignaciones j: p) System.out.println(j.getNotaAlumno());
+               for (Asignación j: p) System.out.println(j.getNota());
            }
            else {
             int i = L, d = H;
@@ -44,8 +44,8 @@ public class Qsortclass extends Thread{
                 pivote = L;
                 while (L!=H)
                 {
-                    while (p[H].getNotaAlumno()>=p[L].getNotaAlumno()  && L<H) H--;
-                    while (p[L].getNotaAlumno()<p[pivote].getNotaAlumno() && L<H) L++;
+                    while (p[H].getNota()>=p[L].getNota()  && L<H) H--;
+                    while (p[L].getNota()<p[pivote].getNota() && L<H) L++;
                     if (H!=L)
                     {
                         temp = p[H];
@@ -81,11 +81,11 @@ public class Qsortclass extends Thread{
         }
 
 
-            for (Asignaciones j : p) {
+            for (Asignación j : p) {
 
-                if ("Machamachacas".equals(Main.curso(j.getIDCurso()))) {
+                if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
 
-                    h.datos.setValue(j.getNotaAlumno(), Main.nombre(j.getIDAlumno()), Main.curso(j.getIDCurso()));
+                    h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
                     h.pack();
                     h.repaint();
 
