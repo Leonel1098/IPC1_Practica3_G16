@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="IPC1_Practica3_G16:jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="IPC1_Practica3_G16.jar">
+      <element id="module-output" name="IPC1_Practica3_G16" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../Escritorio/jfreechart-1.5.3.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jcommon-1.0.23" />
+    </root>
+  </artifact>
+</component>
