@@ -17,23 +17,14 @@ public class Asignación {
         return Idalumno;
     }
 
-    public void setIdalumno(int idalumno) {
-        Idalumno = idalumno;
-    }
 
     public int getIdcurso() {
         return Idcurso;
     }
 
-    public void setIdcurso(int idcurso) {
-        Idcurso = idcurso;
-    }
 
     public double getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
 }

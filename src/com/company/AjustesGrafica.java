@@ -98,7 +98,8 @@ public class AjustesGrafica extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == Graficar) {
             if(Metodo.getSelectedItem().equals("BubbleSort Ascendente")){
-                BsortAclass BA = new BsortAclass(Main.notas);
+                int IdC =(Integer) ID.getSelectedItem();
+                BsortAclass BA = new BsortAclass(Main.notas, IdC);
                 BA.start();
             } else if(Metodo.getSelectedItem().equals("BubbleSort Descendentes")){
                 BsortDclass BD = new BsortDclass(Main.notas);
