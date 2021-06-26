@@ -52,6 +52,21 @@ Asignación temp;
 
                 }
                 if (t == false) {
+                    for (Asignación j : p) {
+
+                        if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
+
+                            g.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
+
+                            g.pack();
+                            g.repaint();
+
+                            // g.datos.clear();
+
+
+                        }
+
+                    }
 
                 }
                // sleep(1000);
