@@ -26,7 +26,6 @@ public class Graficando extends Thread {
                     int m=0;
                     int f=0;
                     for (int i = 0; i < Main.contadorNotas; i++) {
-                        sleep(100);
                         if (idCurso == Main.notas[i].getIdcurso()) {
                             System.out.println("Nombre :" + Main.BuscarAlumnoPorId(Main.notas[i].getIdalumno()) + " nota  :" +
                                     Main.notas[i].getNota());
@@ -41,9 +40,7 @@ public class Graficando extends Thread {
                                 data.setValue("Femenino ", f);
 
                             }
-
-
-
+                            sleep(500);
                         }
 
 

@@ -67,8 +67,10 @@ public class Carga extends JFrame implements ActionListener {
                 w.printStackTrace();
 
             }
-
                 GraficaGenero gg=new GraficaGenero();
+                GraficaEdad nueva = new GraficaEdad();
+            System.out.println("------------------------------");;
+            Main.BuscarAlumnoPorId(151);
 
 
 

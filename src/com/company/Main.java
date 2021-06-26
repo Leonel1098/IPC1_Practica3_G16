@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.spec.RSAOtherPrimeInfo;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 
@@ -43,8 +44,6 @@ public class Main {
             System.out.println("Alumnos" + notas[i].getIdalumno() + ": Curso " + notas[i].getIdcurso() + " nota " + notas[i].getNota());
         }
     }
-    //Ruta que de la Carpeta a leer
-    //static String ruta = "C:\\Users\\Garcia\\IdeaProjects\\IPC1_Practica3_G16\\Archivos Practica3";
 
     public static void LeerFolder(String ruta) throws IOException {
 
@@ -595,7 +594,6 @@ public class Main {
         return "No Existe";
     }
 
-
     public static void Genero(int idCurso)   {
         int m = 0;
         int f = 0;
@@ -641,6 +639,21 @@ public class Main {
         }
         return "%";
 
+    }
+
+    public static int BuscaEdadDelAlumno(int idAlumno){
+
+        int Edad;
+        for (int i=0; i<contadorAlumnos;i++){
+            if (idAlumno == alumnos[i].getId()){
+                String fecha [] = alumnos[i].getFechanacimiento().split("/");
+                int Año = Integer.parseInt(fecha[2]);
+                Edad = 2021 - Año;
+                return Edad;
+            }
+        }
+
+        return 0;
     }
 
 }
