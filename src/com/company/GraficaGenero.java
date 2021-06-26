@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import org.jfree.chart.ChartFactory;
 
 
@@ -22,11 +25,15 @@ public class GraficaGenero extends JFrame implements ActionListener {
     public static JTextField txtID;
     public static JButton graficar;
     public static JFrame Grafica;
-    public JLabel Texto;
+    public JLabel Texto, lblvolver;
+    public ImageIcon volver;
 
     public GraficaGenero() {
         f=0;
         m=0;
+
+        volver = new ImageIcon("./src/logos/volver.png");
+
         Grafica = new JFrame("Grafica Sexos ");
         txtID = new JTextField();
         txtID.setBounds(400, 800, 150, 50);
@@ -38,6 +45,20 @@ public class GraficaGenero extends JFrame implements ActionListener {
         Texto.setBounds(250, 800, 150, 50);
         Texto.setVisible(true);
         Grafica.add(Texto);
+
+        lblvolver = new JLabel(volver);
+        lblvolver.setBounds(990, 850, 30, 30);
+        lblvolver.setVisible(true);
+        Grafica.add(lblvolver);
+        lblvolver.addMouseListener(new MouseAdapter() {
+
+            //Funcion del JLabel
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuGraficas nuevo = new MenuGraficas();
+                Grafica.dispose();
+            }
+        });
 
 
         graficar = new JButton("GRAFICAR GENERO");

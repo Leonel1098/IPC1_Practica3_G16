@@ -12,6 +12,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import org.jfree.chart.ChartFactory;
 
 public class GraficaEdad extends JFrame implements ActionListener{
@@ -22,7 +25,8 @@ public class GraficaEdad extends JFrame implements ActionListener{
     ChartPanel cp;
     JTextField txtID;
     JButton graficar;
-    JLabel Texto;
+    JLabel Texto, lblvolver;
+    ImageIcon volver;
 
     public GraficaEdad(){
         R1 = 0;
@@ -35,6 +39,22 @@ public class GraficaEdad extends JFrame implements ActionListener{
         R8 = 0;
         R9 = 0;
         R10 = 0;
+
+        volver = new ImageIcon("./src/logos/volver.png");
+
+        lblvolver = new JLabel(volver);
+        lblvolver.setBounds(990, 850, 30, 30);
+        lblvolver.setVisible(true);
+        this.add(lblvolver);
+        lblvolver.addMouseListener(new MouseAdapter() {
+
+            //Funcion del JLabel
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuGraficas nuevo = new MenuGraficas();
+                GraficaEdad.this.dispose();
+            }
+        });
 
         txtID = new JTextField();
         txtID.setBounds(400, 800, 150, 50);
