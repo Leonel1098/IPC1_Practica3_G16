@@ -86,7 +86,7 @@ public class GraficandoEdad extends Thread {
                             GraficaEdad.data.setValue(R10,"90-100","");
                         }
 
-                        sleep(1000);
+                        sleep(500);
                     }
 
                 }

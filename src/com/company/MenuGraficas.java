@@ -51,8 +51,8 @@ public class MenuGraficas extends JFrame{
             //Funcion del Label
             @Override
             public void mouseClicked(MouseEvent e) {
-//                AdminAlumnos nuevo = new AdminAlumnos();
-//                MenuAdmin.this.dispose();
+                    AjustesGrafica nueva = new AjustesGrafica();
+                    MenuGraficas.this.dispose();
             }
         });
 
@@ -79,7 +79,7 @@ public class MenuGraficas extends JFrame{
         this.add(lblTN);
 
         //JFrame
-        this.setTitle("Graficas");
+        this.setTitle("Menu Administrador");
         this.setSize(825, 390);
         this.getContentPane().setBackground(Color.orange);
         this.setLayout(null);
