@@ -22,7 +22,7 @@ public class grafica extends JFrame {
 
     JPanel panel = new JPanel();
     this.getContentPane().add(panel);
-    JFreeChart GB = ChartFactory.createBarChart3D("CALIICACIONES", "ESTUDIANTES","CALIFICACION",
+    JFreeChart GB = ChartFactory.createBarChart("CALIICACIONES", "ESTUDIANTES","CALIFICACION",
             datos, PlotOrientation.VERTICAL,true,true,false);
     ChartPanel pa = new ChartPanel(GB);
     pa.setMouseWheelEnabled(true);

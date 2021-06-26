@@ -649,7 +649,7 @@ public class Main {
     }
     public static String curso(int id)
     {
-        for (Cursos p: cursosh )
+        for (Cursos p: curso )
             if (id==p.getId())
                 return p.getNombre();
 

@@ -83,6 +83,7 @@ public class AjustesGrafica extends JFrame implements ActionListener {
         Graficar.setBounds(163, 350, 140, 40);
         Graficar.setVisible(true);
         this.add(Graficar);
+        Graficar.addActionListener(this);
 
         this.setTitle("Ajustes de Gráfica");
         this.getContentPane().setBackground(Color.orange);
@@ -96,8 +97,17 @@ public class AjustesGrafica extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == Graficar) {
-            //Mostrar Grafica
-            //Iniciar Hilo
+            if(Metodo.getSelectedItem().equals("BubbleSort Ascendente")){
+                BsortAclass BA = new BsortAclass(Main.notas);
+                BA.start();
+            } else if(Metodo.getSelectedItem().equals("BubbleSort Descendentes")){
+                BsortDclass BD = new BsortDclass(Main.notas);
+                BD.start();
+            }
+
+//            if(Metodo.getSelectedItem().equals("QuickSort Ascendente")){
+//
+//            }
         }
     }
 }
