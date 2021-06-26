@@ -97,13 +97,59 @@ public class AjustesGrafica extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == Graficar) {
-            if(Metodo.getSelectedItem().equals("BubbleSort Ascendente")){
-                int IdC =(Integer) ID.getSelectedItem();
-                BsortAclass BA = new BsortAclass(Main.notas, IdC);
-                BA.start();
-            } else if(Metodo.getSelectedItem().equals("BubbleSort Descendentes")){
-                BsortDclass BD = new BsortDclass(Main.notas);
-                BD.start();
+            int IdC =(Integer) ID.getSelectedItem();
+            String Vel = (String) Velocidad.getSelectedItem();
+
+            if(Metodo.getSelectedItem().equals("BubbleSort Ascendente")) {
+                if (Vel.equals("Lenta")){
+                    BsortAclass BAA = new BsortAclass(Main.notas, IdC, 1500);
+                    Crono C = new Crono();
+                    C.start();
+                    BAA.start();
+                }else if (Vel.equals("Media")){
+                    BsortAclass BAA = new BsortAclass(Main.notas, IdC, 800);
+                    Crono C = new Crono();
+                    C.start();
+                    BAA.start();
+                }else if(Vel.equals("Rápida")){
+                    BsortAclass BAA = new BsortAclass(Main.notas, IdC, 300);
+                    BAA.start();
+                    Crono C = new Crono();
+                    C.start();
+                }
+
+            }
+
+            else if(Metodo.getSelectedItem().equals("BubbleSort Descendente")){
+                if (Vel.equals("Lenta")){
+                    BsortDclass BDA = new BsortDclass(Main.notas, IdC, 1500);
+                    BDA.start();
+                    Crono C = new Crono();
+                    C.start();
+                }else if (Vel.equals("Media")){
+                    BsortDclass BDA = new BsortDclass(Main.notas, IdC, 800);
+                    BDA.start();
+                    Crono C = new Crono();
+                    C.start();
+                }else if(Vel.equals("Rápida")){
+                    BsortDclass BDA = new BsortDclass(Main.notas, IdC, 300);
+                    BDA.start();
+                    Crono C = new Crono();
+                    C.start();
+                }
+            }
+
+            else  if (Metodo.getSelectedItem().equals("QuickSort Ascendente")){
+                if (Vel.equals("Lenta")){
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.notas.length/2, IdC, 1500);
+                    Q.start();
+                }else if (Vel.equals("Media")){
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.contadorNotas, IdC, 800);
+                    Q.start();
+                }else if(Vel.equals("Rápida")){
+                    Qsortclass Q = new Qsortclass(Main.notas, 0, Main.contadorNotas, IdC, 300);
+                    Q.start();
+                }
             }
 
 //            if(Metodo.getSelectedItem().equals("QuickSort Ascendente")){

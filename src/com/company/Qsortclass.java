@@ -5,11 +5,15 @@ public class Qsortclass extends Thread{
     public int L,H;
     public static grafica h = new grafica();
    public static Qsortclass u,k;
-    public Qsortclass(Asignación[] p,int L, int  H)
+   public int IdCurso, Velocidad;
+    public Qsortclass(Asignación[] p,int L, int  H, int IdCurso, int Velocidad)
     {
         this.p=p;
         this.L=L;
         this.H=H;
+        this.IdCurso = IdCurso;
+        this.Velocidad = Velocidad;
+
     }
     Asignación temp;
 
@@ -20,15 +24,17 @@ public class Qsortclass extends Thread{
             h.setVisible(true);
            if (L>=H) { for (Asignación j : p) {
 
-               if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
+               if (j!=null) {
+                   if (IdCurso == j.getIdcurso()) {
 
-                   h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
-                   h.pack();
-                   h.repaint();
+                       h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
+                       h.pack();
+                       h.repaint();
+                       // g.datos.clear();
 
-                   // g.datos.clear();
 
 
+                   }
                }
 
            }
@@ -55,9 +61,9 @@ public class Qsortclass extends Thread{
                     if (L==H)
                     {
 
-                         u = new Qsortclass(p, i, L - 1);
+                         u = new Qsortclass(p, i, L - 1, IdCurso, Velocidad);
                          p= u.p;
-                         k=new Qsortclass(p,L+1,d);
+                         k=new Qsortclass(p,L+1,d, IdCurso, Velocidad);
                          p=k.p;
                     }
                 }
@@ -77,21 +83,25 @@ public class Qsortclass extends Thread{
 
             }*/System.out.println("adf");
 
-           sleep(100);
+
+
         }
 
 
             for (Asignación j : p) {
 
-                if ("Machamachacas".equals(Main.curso(j.getIdcurso()))) {
+                if (j!=null) {
+                    if (IdCurso == j.getIdcurso()) {
 
-                    h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
-                    h.pack();
-                    h.repaint();
+                        h.datos.setValue(j.getNota(), Main.nombre(j.getIdalumno()), Main.curso(j.getIdcurso()));
+                        h.pack();
+                        h.repaint();
+                        sleep(Velocidad);
 
-                    // g.datos.clear();
+                        // g.datos.clear();
 
 
+                    }
                 }
 
             }

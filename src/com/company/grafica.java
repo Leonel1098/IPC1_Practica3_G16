@@ -12,21 +12,26 @@ import java.awt.*;
 
 public class grafica extends JFrame {
     DefaultCategoryDataset datos = new DefaultCategoryDataset();
+    static public JLabel time;
     public grafica()
 {
-    setSize(700,700);
+    setSize(900,900);
     //setLocation(500,100);
     setLocationRelativeTo(null);
-    setDefaultCloseOperation(3);
+    //setDefaultCloseOperation(3);
     setTitle("ORDENAMIENTOS");
+
+    time = new JLabel();
+    time.setBounds(5, 5, 100,30);
+    time.setVisible(true);
+    this.add(time);
 
     JPanel panel = new JPanel();
     this.getContentPane().add(panel);
-    JFreeChart GB = ChartFactory.createBarChart("CALIICACIONES", "ESTUDIANTES","CALIFICACION",
-            datos, PlotOrientation.VERTICAL,true,true,false);
+    JFreeChart GB = ChartFactory.createBarChart("CALIFICACIONES", "ESTUDIANTES","CALIFICACION", datos, PlotOrientation.VERTICAL,true,true,false);
     ChartPanel pa = new ChartPanel(GB);
     pa.setMouseWheelEnabled(true);
-    pa.setPreferredSize(new Dimension(400,400));
+    pa.setPreferredSize(new Dimension(500,500));
     panel.setLayout(new BorderLayout());
     panel.add(pa,BorderLayout.NORTH);
    // pack();
